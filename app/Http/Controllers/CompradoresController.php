@@ -1,0 +1,79 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Compradores;
+use Illuminate\Http\Request;
+
+class CompradoresController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $compradores=Compradores::all();
+        return $compradores;
+    }
+
+ 
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $comprador=Compradores::create($request->all());
+        return $comprador;
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Compradores  $compradores
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Compradores $compradores)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Compradores  $compradores
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Compradores $compradores)
+    {
+        
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Compradores  $compradores
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Compradores $compradores)
+    {
+        
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Compradores  $compradores
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Compradores $compradores)
+    {
+        //
+    }
+}
