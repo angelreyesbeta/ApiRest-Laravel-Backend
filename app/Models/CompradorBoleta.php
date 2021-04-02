@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class CompradorBoleta extends Model
 {
-    protected $fillable=["cantidad"];
-    //protected $fillable=["id_boleta","id_comprador","cantidad"];
+    //protected $fillable=["cantidad"];
+    protected $fillable=["id_boleta","id_comprador","cantidad"];
    // protected $table ='comprador_boletas';
 
     public function comprador(){
