@@ -14,8 +14,11 @@ class CompradorBoletaController extends Controller
      */
     public function index()
     {
-        $compradorBoletas=CompradorBoleta::all();
-        return $compradorBoletas;
+        $compradorBoletas=CompradorBoleta::all()->load('comprador','boleta');
+        return response()->json(array(
+            'reservas'=>$compradorBoletas,
+            'status'=>'success'
+        ),200) ;
         
     }
 

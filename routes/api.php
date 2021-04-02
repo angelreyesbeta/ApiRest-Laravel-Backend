@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 Route::apiResource("compradores", "App\Http\Controllers\CompradoresController");
 Route::apiResource("boletas", "App\Http\Controllers\BoletaController");
 Route::apiResource("reservas", "App\Http\Controllers\CompradorBoletaController");
+Route::apiResource("users", "App\Http\Controllers\UserController");
 
 
 
