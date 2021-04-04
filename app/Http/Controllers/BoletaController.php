@@ -28,8 +28,51 @@ class BoletaController extends Controller
      */
     public function store(Request $request)
     {
-        $boleta=Boleta::create($request->all());
-        return $boleta;
+
+        /* $boleta=Boleta::create($request->all());
+        return $boleta; */
+    
+      
+            //Recoger datos por post
+            $json=$request->input('json',null);
+            $params=json_decode($json);
+            $params_array=json_decode($json,true);
+            //validacion
+            $validate=\Validator::make($params_array,[
+                'description' => 'required',
+                'cantidad' => 'required'
+                ]);
+                
+                if($validate->fails()){
+                    return response()->json($validate->errors(),400);
+                }
+
+                //Guardar el coche
+                $boleta=new Boleta();
+                $boleta->description=$params->description;
+                $boleta->cantidad=$params->cantidad;
+
+                $isset_boleta=Boleta::where('description','=', $boleta->description)->first();
+                if(is_null($isset_boleta)){
+
+                    $boleta->save();
+                    $data=array(
+                        'boleta'=>$boleta,
+                        'status'=>'success',
+                        'code'=>'200'
+                    ); 
+                }else{
+                    $data=array(
+                        'status'=>'error',
+                        'code'=>400,
+                        'message'=>'Boleta duplicada, no puede registrarse'
+                    ); 
+                }
+
+                
+
+                    
+        return response()->json($data,200);
     }
 
     /**

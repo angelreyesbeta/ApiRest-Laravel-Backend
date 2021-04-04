@@ -32,8 +32,44 @@ class CompradorBoletaController extends Controller
      */
     public function store(Request $request)
     {
-        $compradorBoletas=CompradorBoleta::create($request->all());
-        return $compradorBoletas;
+        /* $compradorBoletas=CompradorBoleta::create($request->all());
+        return $compradorBoletas; */
+
+        //Recoger datos por post
+        $json=$request->input('json',null);
+        $params=json_decode($json);
+        $params_array=json_decode($json,true);
+
+        //validacion
+        $validate=\Validator::make($params_array,[
+            'id_boleta' => 'required',
+            'id_comprador' => 'required',
+            'cantidad' => 'required'
+            ]);
+            
+            if($validate->fails()){
+                return response()->json($validate->errors(),400);
+            }
+
+            //Guardar el coche
+            $reserva=new CompradorBoleta();
+            $reserva->id_boleta=$params->id_boleta;
+            $reserva->id_comprador=$params->id_comprador;
+            $reserva->cantidad=$params->cantidad;
+            
+            $reserva->save();
+
+            $data=array(
+                'reserva'=>$reserva,
+                'status'=>'success',
+                'code'=>'200'
+            ); 
+         
+
+            
+
+                
+    return response()->json($data,200);
         
     }
 
