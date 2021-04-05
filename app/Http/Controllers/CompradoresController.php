@@ -14,7 +14,8 @@ class CompradoresController extends Controller
      */
     public function index()
     {
-        $compradores=Compradores::all();
+        //$boletas=Boleta::orderBy('id','desc')->get();
+        $compradores=Compradores::orderBy('name','asc')->get();
         return $compradores;
     }
 

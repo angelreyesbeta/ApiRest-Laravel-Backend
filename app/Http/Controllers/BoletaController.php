@@ -14,11 +14,11 @@ class BoletaController extends Controller
      */
     public function index()
     {
-        $boletas=Boleta::all();
+        $boletas=Boleta::orderBy('id','desc')->get();
         return $boletas;
     }
 
-  
+    
 
     /**
      * Store a newly created resource in storage.
